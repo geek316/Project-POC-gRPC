@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: POC-gRPC
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/test
+      auto-index-creation: false
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  observations:
+    annotations:
+      enabled: true
