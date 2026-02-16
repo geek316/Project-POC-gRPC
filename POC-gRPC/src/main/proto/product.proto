@@ -1,4 +1,27 @@
 syntax = "proto3";
 
-option java_package = "com.strategicfarming.grpc";
+option java_package = "strategicfarming.grpc";
 option java_multiple_files = true;
+
+message Product {
+  string materialCode = 1;
+  string description = 2;
+  string plant = 3;
+  string materialType = 4;
+  double price = 5;
+  string currency = 6;
+}
+
+message ProductBatchRequest {
+  repeated Product products = 1;
+}
+
+message ProductBatchResponse {
+  int32 processed = 1;
+  int32 failed = 2;
+  int64 durationMs = 3;
+}
+
+service ProductService {
+  rpc ProcessProducts (ProductBatchRequest) returns (ProductBatchResponse);
+}

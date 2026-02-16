@@ -19,6 +19,8 @@ public class ProductProcessingServiceImpl implements ProductProcessingService {
     @Override
     public ProcessingResult process(List<ProductCommand> products) {
 
+        long start = System.currentTimeMillis();
+
         int processed = 0;
         int failed = 0;
 
@@ -31,8 +33,11 @@ public class ProductProcessingServiceImpl implements ProductProcessingService {
             }
         }
 
-        return new ProcessingResult(processed, failed, 0);
+        long duration = System.currentTimeMillis() - start;
+
+        return new ProcessingResult(processed, failed, duration);
     }
+
 
     private void applyBusinessLogic(ProductCommand product) {
 
@@ -64,7 +69,7 @@ public class ProductProcessingServiceImpl implements ProductProcessingService {
         long result = 0;
 
         // Increase this number to increase CPU load
-        for (int i = 0; i < 50_000; i++) {
+        for (int i = 0; i < 10; i++) {
             result += Math.sqrt(i * 123.456);
             result = result ^ input.hashCode();
         }
