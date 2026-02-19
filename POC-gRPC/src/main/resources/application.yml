@@ -1,3 +1,10 @@
+server:
+  port: 8080
+
+grpc:
+  server:
+    port: 9191
+
 spring:
   application:
     name: POC-gRPC
